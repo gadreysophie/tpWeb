@@ -20,6 +20,7 @@
 
             butt.addEventListener("click", function (evt) {
                 drawing.shapes = drawing.shapes.filter(function (value, index, arr) {
+
                     return value !== shape
                 });
                 drawing.paint();

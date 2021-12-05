@@ -13,11 +13,19 @@ function Pencil(ctx, drawing, canvas) {
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 
-	let rectButton;
+	document.getElementById("spinnerWidth").onchange=(e) => this.currLineWidth = e.target.value;
+	//Rectangle
+	document.getElementById("butRect").onclick=() => this.currEditingMode = editingMode.rect;
+	//Ligne
+	document.getElementById("butLine").onclick=() => this.currEditingMode = editingMode.line;
+
+	document.getElementById("colour").onchange=(e) => this.currColour = e.target.value;
+
+	/*
 	rectButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.rect
 	}.bind(this));
-	let lineButton;
+
 	lineButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.line
 	}.bind(this));
@@ -25,7 +33,11 @@ function Pencil(ctx, drawing, canvas) {
 	widthSpinBox.addEventListener('input', function (evt) {
 		this.currLineWidth = evt.target.value
 	}.bind(this));
-	colorPicker.addEventListener('input',)
+
+	colorPicker.addEventListener('input', function (evt) {
+		this.currColour = evt.target.value
+	}).bind(this);
+ 	*/
 
 	new DnD(canvas, this);
 
@@ -43,6 +55,8 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
+		drawing.addShape(this.currentShape);
+		drawing.updateShapeList();
 	}.bind(this);
 
 	Pencil.prototype.onInteractionUpdate = function (dnd) {
@@ -61,6 +75,7 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
+		drawing.paint(ctx);
 	}.bind(this);
 
 	Pencil.prototype.onInteractionEnd = function (dnd) {
