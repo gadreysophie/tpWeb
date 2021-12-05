@@ -8,20 +8,41 @@ function DnD(canvas, interactor) {
   this.xFinal = 0;
   this.yFinal = 0;
   this.mousePressed = false;
+  this.wait = true;
+  this.canvas = canvas;
   this.pencil = interactor;
 
+  this.getInitX = function() {
+    return   this.xInit;
+  }.bind(this) ;
+
+  this.getInitY = function() {
+    return   this.yInit;
+  }.bind(this) ;
+
+  this.getFinalX = function() {
+    return   this.xFinal;
+  }.bind(this) ;
+
+  this.getFinalY = function() {
+    return   this.yFinal;
+  }.bind(this) ;
+
 	// Developper les 3 fonctions gérant les événements
+
   this.pickUp = function (evt){
     this.mousePressed = true;
-    pos = getMousePosition(canvas, evt);
+    let pos = getMousePosition(canvas, evt);
     this.xInit = pos.x;
     this.yInit = pos.y;
     this.xFinal = pos.x;
     this.yFinal = pos.y;
+    this.pencil.onInteractionStart(this);
   }.bind(this);
 
   this.move = function (evt){
-    if(this.mousePressed){
+    let mousePos;
+    if (this.mousePressed) {
       mousePos = getMousePosition(canvas, evt);
       this.xFinal = mousePos.x;
       this.yFinal = mousePos.y;
@@ -30,29 +51,30 @@ function DnD(canvas, interactor) {
   }.bind(this);
 
   this.drop = function (evt){
-    if(this.mousePressed){
-      pos = getMousePosition(canvas,evt);
+      this.mousePressed = false;
+      let pos = getMousePosition(canvas,evt);
       this.xFinal = pos.x;
       this.yFinal = pos.y;
       this.pencil.onInteractionEnd(this);
-      this.mousePressed = false;
-    }
   }.bind(this);
+
 	// Associer les fonctions précédentes aux évènements du canvas.
-  canvas.addEventListener('mouseDown', this.pickUp, false);
-  canvas.addEventListener('mouseMove', this.move, false);
-  canvas.addEventListener('mouseUp', this.drop, false);
+
+  canvas.addEventListener("mouseDown", this.pickUp, false);
+  canvas.addEventListener("mouseMove", this.move, false);
+  canvas.addEventListener("mouseUp", this.drop, false);
 
 };
 
 
 // Place le point de l'événement evt relativement à la position du canvas.
 function getMousePosition(canvas, evt) {
-  var rect = canvas.getBoundingClientRect();
+  let rect = canvas.getBoundingClientRect();
   return {
     x: evt.clientX - rect.left,
     y: evt.clientY - rect.top
   };
+
 };
 
 

@@ -1,19 +1,27 @@
 
-var editingMode = { rect: 0, line: 1 };
+let editingMode = { rect: 0, line: 1 };
 
 function Pencil(ctx, drawing, canvas) {
+
+	this.currentShape = 0;
+	this.ctx = ctx;
+
 	this.currEditingMode = editingMode.line;
 	this.currLineWidth = 5;
 	this.currColour = '#000000';
 	this.currentShape = 0;
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
+
+	let rectButton;
 	rectButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.rect
 	}.bind(this));
+	let lineButton;
 	lineButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.line
 	}.bind(this));
+
 	widthSpinBox.addEventListener('input', function (evt) {
 		this.currLineWidth = evt.target.value
 	}.bind(this));
@@ -22,6 +30,7 @@ function Pencil(ctx, drawing, canvas) {
 	new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
+
 	Pencil.prototype.onInteractionStart = function (dnd){
 		drawing.paint();
 		switch (this.currEditingMode){
@@ -34,7 +43,7 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
-	}
+	}.bind(this);
 
 	Pencil.prototype.onInteractionUpdate = function (dnd) {
 		drawing.paint();
@@ -52,14 +61,16 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
-	}
+	}.bind(this);
 
 	Pencil.prototype.onInteractionEnd = function (dnd) {
+		this.currentShape.finalX = dnd.finalX;
+		this.currentShape.finalY = dnd.finalY;
+		this.currentShape.paint(this.ctx);
 		drawing.addShape(this.currentShape);
-		this.currentShape = null;
-		drawing.paint();
+		drawing.paint(this.ctx);
+	}.bind(this);
 
-	}
 };
 
 

@@ -1,16 +1,29 @@
 
 // Implémenter ici les 4 classes du modèle.
 // N'oubliez pas l'héritage !
+/*
     function Drawing(){
+        this.shapes = new Array();
+        this.getShapes = function() {
+            return this.shapes;
+        }.bind(this) ;
+
+        this.addShape = function(form) {
+            this.shapes.push(form);
+        }.bind(this) ;
+    }
+ */
+    function Drawing() {
         this.shapes = new Array();
 
         Drawing.prototype.addShape = function (shape) {
             this.shapes.push(shape);
-        }
+        }.bind(this);
 
         Drawing.prototype.getShapes = function () {
             return this.shapes;
-        }
+        }.bind(this);
+    }
 
         function Shape(thickness, color){
             this.thickness = thickness;
@@ -27,15 +40,44 @@
 
         Rectangle.prototype.getInitX = function () {
             return this.x1;
-        }
+        }.bind(this);
+
         Rectangle.prototype.getInitY = function () {
             return this.y1;
-        }
+        }.bind(this);
+
         Rectangle.prototype.getWidth = function () {
             return this.width;
-        }
+        }.bind(this);
+
         Rectangle.prototype.getHeight = function () {
             return this.height;
-        }
-    }
-    Line.prototype = new Shape();
+        }.bind(this);
+
+        Rectangle.prototype = new Rectangle();
+
+        function Line(x1,y1,x2,y2,width,color){
+            Shape.call(this, x1,y1,x2,y2,width,color);
+            this.x1 = x1;
+            this.y1 = y1;
+            this.width = x2;
+            this.height = y2;
+        };
+
+    Line.prototype.getInitX = function () {
+        return this.x1;
+    }.bind(this);
+
+    Line.prototype.getInitY = function () {
+        return this.y1;
+    }.bind(this);
+
+    Line.prototype.getWidth = function () {
+        return this.width;
+    }.bind(this);
+
+    Line.prototype.getHeight = function () {
+        return this.height;
+    }.bind(this);
+
+    Line.prototype = new Line();
