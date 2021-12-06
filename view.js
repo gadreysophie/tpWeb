@@ -15,7 +15,6 @@ Drawing.prototype.updateShapeList = function () {
 
         butt.setAttribute("type", "button");
         butt.setAttribute("class", "btn btn-class");
-        //butt.setAttribute("class", "mx-button");
         butt.setAttribute("data-shapeId", "li");
 
         butt.addEventListener("click", function (evt) {
@@ -54,8 +53,9 @@ Drawing.prototype.updateShapeList = function () {
         };
 
         Line.prototype.paint = function () {
-            ctx.beginPath();
             Shape.prototype.paint.call(this);
+            ctx.beginPath();
+
             ctx.moveTo(this.getInitX(), this.getInitY());
             ctx.lineTo(this.getFinalX(), this.getFinalY());
             ctx.stroke();
@@ -72,6 +72,7 @@ Drawing.prototype.updateShapeList = function () {
         };
 
         Shape.prototype.paint = function () {
+            console.log("width view "+ this.thickness)
             ctx.lineWidth = this.thickness;
             ctx.strokeStyle = this.color;
         };

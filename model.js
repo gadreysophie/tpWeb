@@ -29,11 +29,11 @@
             this.thickness = thickness;
             this.color = color;
 
-            this.thickness = function (){
+            this.getThickness = function (){
                 return this.thickness;
             }.bind(this);
 
-            this.color = function () {
+            this.getColor = function () {
                 return this.color;
             }.bind(this);
         }

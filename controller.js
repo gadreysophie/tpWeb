@@ -13,15 +13,22 @@ function Pencil(ctx, drawing, canvas) {
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 
-	document.getElementById("spinnerWidth").onchange=(e) => this.currLineWidth = e.target.value;
+	//Epaisseur
+	document.getElementById("spinnerWidth").onchange=(e) => {
+		this.currLineWidth = e.target.value;
+		console.log(e);
+	}
+
 	//Rectangle
 	document.getElementById("butRect").onclick=() => this.currEditingMode = editingMode.rect;
+
 	//Ligne
 	document.getElementById("butLine").onclick=() => this.currEditingMode = editingMode.line;
 
+	//Couleur
 	document.getElementById("colour").onchange=(e) => this.currColour = e.target.value;
-
-	/*
+	console.log(this.currColour);
+/*
 	rectButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.rect
 	}.bind(this));
@@ -37,7 +44,7 @@ function Pencil(ctx, drawing, canvas) {
 	colorPicker.addEventListener('input', function (evt) {
 		this.currColour = evt.target.value
 	}).bind(this);
- 	*/
+ */
 
 	new DnD(canvas, this);
 
@@ -48,13 +55,17 @@ function Pencil(ctx, drawing, canvas) {
 		switch (this.currEditingMode){
 			case editingMode.rect:
 				this.currentShape = new Rectangle(dnd.xInit, dnd.yInit, dnd.xFinal-dnd.xInit,dnd.yFinal-dnd.yInit, this.currLineWidth, this.currColour);
-			break;
+				console.log(this.currLineWidth);
+				break;
 			case editingMode.line:
 				this.currentShape = new Line(dnd.xInit,dnd.yInit, dnd.xFinal, dnd.yFinal, this.currLineWidth, this.currColour);
+				console.log(this.currColour);
 				break;
 			default:
 				break;
 		}
+		console.log(this.currColour);
+		console.log("width " + this.currLineWidth);
 		drawing.addShape(this.currentShape);
 		drawing.updateShapeList();
 	}.bind(this);
@@ -104,11 +115,13 @@ function Pencil(ctx, drawing, canvas) {
 
 	document.getElementById("butRect").addEventListener("click", this.drawRect, false);
 	document.getElementById("butLine").addEventListener("click", this.drawLine, false);
-	var spinner = document.getElementById("spinnerWidth");
-	spinner.addEventListener("change", this.changeEpaisseur, false);
-	var color = document.getElementById("colour");
-	color.addEventListener("change", this.changeColor, false);
+	let spinner = document.getElementById("spinnerWidth");
+	spinner.addEventListener('change', this.changeEpaisseur, false);
+	let color = document.getElementById("colour");
+	color.addEventListener('change', this.changeColor, false);
 
+	console.log(this.changeColor);
+	console.log(this.changeEpaisseur);
 };
 
 
