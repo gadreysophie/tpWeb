@@ -28,6 +28,14 @@
         function Shape(thickness, color){
             this.thickness = thickness;
             this.color = color;
+
+            this.thickness = function (){
+                return this.thickness;
+            }.bind(this);
+
+            this.color = function () {
+                return this.color;
+            }.bind(this);
         }
 
         function Rectangle(x1, y1, x2, y2, thickness, color){
@@ -56,8 +64,9 @@
 
         Rectangle.prototype = new Rectangle();
 
-        function Line(x1,y1,x2,y2,width,color){
-            Shape.call(this, x1,y1,x2,y2,width,color);
+        function Line (x1,y1,x2,y2,width,color){
+
+            Shape.call(this,width,color);
             this.x1 = x1;
             this.y1 = y1;
             this.x2 = x2;
@@ -78,6 +87,7 @@
             this.getFinalY = function () {
                 return this.y2;
             }.bind(this);
+
         };
 
     Line.prototype = new Line();

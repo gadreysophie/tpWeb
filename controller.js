@@ -75,7 +75,7 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
-		drawing.paint(ctx);
+		//drawing.paint(ctx);
 	}.bind(this);
 
 	Pencil.prototype.onInteractionEnd = function (dnd) {
