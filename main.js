@@ -7,23 +7,26 @@
 
 // Code temporaire pour tester le DnD
 
-    new DnD(canvas);
+   // new DnD(canvas, new Pencil());
+
     ctx.fillStyle = '#F0F0F3'; // set canvas' background color
     ctx.fillRect(0, 0, canvas.width, canvas.height);  // now fill the canvas
 
 // Code temporaire pour tester l'affiche de la vue
 
     let rec = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
+    console.log(ctx);
     rec.paint(ctx);
-    let ligne = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
+    let ligne = new Line(10, 20, 50, 100, 5, '#00CCC0');
     ligne.paint(ctx);
 
+    new Pencil(ctx, new Drawing(), canvas);
 // tester également Dessin
 
 // Code final à utiliser pour manipuler Pencil.
 
     let drawing = new Drawing();
-    let pencil = new Pencil(ctx, drawing, canvas);
+    //let pencil = new Pencil(ctx, drawing, canvas);
 
     drawing.paint(ctx, canvas);
     rec.paint();
@@ -31,7 +34,7 @@
     drawing.updateShapeList();
 
 
-
+/*
     function switchShape(index) {
         switch (index) {
             case editingMode.rect:
@@ -45,9 +48,10 @@
                 break;
         }
     }
+ */
 
 
-
+/*
     let save = function(){
         ajax.post("/titi", drawing.getShapes, function(){
         })
@@ -112,4 +116,6 @@
         }
         ajax.send(url, callback, 'POST', query.join('&'), async)
     };
+
+ */
 

@@ -31,6 +31,7 @@ function DnD(canvas, interactor) {
 	// Developper les 3 fonctions gérant les événements
 
   this.pickUp = function (evt){
+    console.log(evt);
     this.mousePressed = true;
     let pos = getMousePosition(canvas, evt);
     this.xInit = pos.x;
@@ -59,10 +60,11 @@ function DnD(canvas, interactor) {
   }.bind(this);
 
 	// Associer les fonctions précédentes aux évènements du canvas.
-
-  canvas.addEventListener("mouseDown", this.pickUp, false);
-  canvas.addEventListener("mouseMove", this.move, false);
-  canvas.addEventListener("mouseUp", this.drop, false);
+  console.log(canvas);
+  console.log(this);
+  canvas.addEventListener('mousedown', this.pickUp, false);
+  canvas.addEventListener('mousemove', this.move, false);
+  canvas.addEventListener('mouseup', this.drop, false);
 
 };
 

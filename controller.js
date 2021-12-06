@@ -44,7 +44,7 @@ function Pencil(ctx, drawing, canvas) {
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
 
 	Pencil.prototype.onInteractionStart = function (dnd){
-		drawing.paint();
+		drawing.paint(this.ctx);
 		switch (this.currEditingMode){
 			case editingMode.rect:
 				this.currentShape = new Rectangle(dnd.xInit, dnd.yInit, dnd.xFinal-dnd.xInit,dnd.yFinal-dnd.yInit, this.currLineWidth, this.currColour);
@@ -60,7 +60,7 @@ function Pencil(ctx, drawing, canvas) {
 	}.bind(this);
 
 	Pencil.prototype.onInteractionUpdate = function (dnd) {
-		drawing.paint();
+		drawing.paint(this.ctx);
 		switch (this.currEditingMode){
 			case editingMode.rect:
 				this.currentShape.width = dnd.xFinal - dnd.xInit;
@@ -85,6 +85,29 @@ function Pencil(ctx, drawing, canvas) {
 		drawing.addShape(this.currentShape);
 		drawing.paint(this.ctx);
 	}.bind(this);
+
+	this.drawRect = function() {
+		this.currEditingMode = editingMode.rect;
+	}.bind(this);
+
+	this.drawLine = function() {
+		this.currEditingMode = editingMode.line;
+	}.bind(this);
+
+	this.changeEpaisseur = function(val) {
+		this.currLineWidth = val.target.value;
+	}.bind(this);
+
+	this.changeColor = function(col) {
+		this.currColour = col.target.value;
+	}.bind(this);
+
+	document.getElementById("butRect").addEventListener("click", this.drawRect, false);
+	document.getElementById("butLine").addEventListener("click", this.drawLine, false);
+	var spinner = document.getElementById("spinnerWidth");
+	spinner.addEventListener("change", this.changeEpaisseur, false);
+	var color = document.getElementById("colour");
+	color.addEventListener("change", this.changeColor, false);
 
 };
 

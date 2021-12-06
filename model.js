@@ -18,11 +18,11 @@
 
         Drawing.prototype.addShape = function (shape) {
             this.shapes.push(shape);
-        }.bind(this);
+        };
 
         Drawing.prototype.getShapes = function () {
             return this.shapes;
-        }.bind(this);
+        };
     }
 
         function Shape(thickness, color){
@@ -36,23 +36,23 @@
             this.y1 = y1;
             this.width = x2;
             this.height = y2;
+
+            this.getHeight = function () {
+                return this.height;
+            }.bind(this);
+
+            this.getInitX = function () {
+                return this.x1;
+            }.bind(this);
+
+            this.getInitY = function () {
+                return this.y1;
+            }.bind(this);
+
+            this.getWidth = function () {
+                return this.width;
+            }.bind(this);
         }
-
-        Rectangle.prototype.getInitX = function () {
-            return this.x1;
-        }.bind(this);
-
-        Rectangle.prototype.getInitY = function () {
-            return this.y1;
-        }.bind(this);
-
-        Rectangle.prototype.getWidth = function () {
-            return this.width;
-        }.bind(this);
-
-        Rectangle.prototype.getHeight = function () {
-            return this.height;
-        }.bind(this);
 
         Rectangle.prototype = new Rectangle();
 
@@ -62,22 +62,22 @@
             this.y1 = y1;
             this.width = x2;
             this.height = y2;
+
+            Line.prototype.getInitX = function () {
+                return this.x1;
+            }.bind(this);
+
+            Line.prototype.getInitY = function () {
+                return this.y1;
+            }.bind(this);
+
+            Line.prototype.getWidth = function () {
+                return this.width;
+            }.bind(this);
+
+            this.getHeight = function () {
+                return this.height;
+            }.bind(this);
         };
-
-    Line.prototype.getInitX = function () {
-        return this.x1;
-    }.bind(this);
-
-    Line.prototype.getInitY = function () {
-        return this.y1;
-    }.bind(this);
-
-    Line.prototype.getWidth = function () {
-        return this.width;
-    }.bind(this);
-
-    Line.prototype.getHeight = function () {
-        return this.height;
-    }.bind(this);
 
     Line.prototype = new Line();
