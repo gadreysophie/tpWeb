@@ -45,11 +45,10 @@ Drawing.prototype.updateShapeList = function () {
     });
 }
 
-Rectangle.prototype.paint = function () {
+        Rectangle.prototype.paint = function () {
             ctx.beginPath();
             Shape.prototype.paint.call(this);
             console.log(this.getInitX());
-
             ctx.rect(this.getInitX(), this.getInitY(), this.getWidth(), this.getHeight());
             ctx.stroke();
         };
@@ -58,7 +57,7 @@ Rectangle.prototype.paint = function () {
             ctx.beginPath();
             Shape.prototype.paint.call(this);
             ctx.moveTo(this.getInitX(), this.getInitY());
-            ctx.lineTo(this.getWidth(), this.getHeight());
+            ctx.lineTo(this.getFinalX(), this.getFinalY());
             ctx.stroke();
         };
 

@@ -60,23 +60,23 @@
             Shape.call(this, x1,y1,x2,y2,width,color);
             this.x1 = x1;
             this.y1 = y1;
-            this.width = x2;
-            this.height = y2;
+            this.x2 = x2;
+            this.y2 = y2;
 
-            Line.prototype.getInitX = function () {
+            this.getInitX = function () {
                 return this.x1;
             }.bind(this);
 
-            Line.prototype.getInitY = function () {
+            this.getInitY = function () {
                 return this.y1;
             }.bind(this);
 
-            Line.prototype.getWidth = function () {
-                return this.width;
+            this.getFinalX = function () {
+                return this.x2;
             }.bind(this);
 
-            this.getHeight = function () {
-                return this.height;
+            this.getFinalY = function () {
+                return this.y2;
             }.bind(this);
         };
 
