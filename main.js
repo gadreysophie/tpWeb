@@ -16,7 +16,7 @@
 // Code temporaire pour tester l'affiche de la vue
 
     let rec = new Rectangle(10, 20, 50, 100, 5, '#00CCC0');
-    console.log(ctx);
+    //console.log(ctx);
     rec.paint(ctx);
     let ligne = new Line(10, 20, 50, 100, 5, '#00CCC0');
     ligne.paint(ctx);
@@ -26,15 +26,10 @@
 
 // Code final à utiliser pour manipuler Pencil.
 
-    let drawing = new Drawing();
-    //let pencil = new Pencil(ctx, drawing, canvas);
 
-/*
-    drawing.paint(ctx, canvas);
-    rec.paint();
-    ligne.paint();
-    drawing.updateShapeList();
- */
+    //rec.paint();
+    //ligne.paint();
+
 
 /*
     function switchShape(index) {

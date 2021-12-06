@@ -16,7 +16,7 @@ function Pencil(ctx, drawing, canvas) {
 	//Epaisseur
 	document.getElementById("spinnerWidth").onchange=(e) => {
 		this.currLineWidth = e.target.value;
-		console.log(e);
+		//console.log(e);
 	}
 
 	//Rectangle
@@ -27,7 +27,7 @@ function Pencil(ctx, drawing, canvas) {
 
 	//Couleur
 	document.getElementById("colour").onchange=(e) => this.currColour = e.target.value;
-	console.log(this.currColour);
+
 /*
 	rectButton.addEventListener('click', function () {
 		this.currEditingMode = editingMode.rect
@@ -55,19 +55,19 @@ function Pencil(ctx, drawing, canvas) {
 		switch (this.currEditingMode){
 			case editingMode.rect:
 				this.currentShape = new Rectangle(dnd.xInit, dnd.yInit, dnd.xFinal-dnd.xInit,dnd.yFinal-dnd.yInit, this.currLineWidth, this.currColour);
-				console.log(this.currLineWidth);
+				//console.log(this.currLineWidth);
 				break;
 			case editingMode.line:
 				this.currentShape = new Line(dnd.xInit,dnd.yInit, dnd.xFinal, dnd.yFinal, this.currLineWidth, this.currColour);
-				console.log(this.currColour);
+				//console.log(this.currColour);
 				break;
 			default:
 				break;
 		}
-		console.log(this.currColour);
-		console.log("width " + this.currLineWidth);
-		drawing.addShape(this.currentShape);
-		drawing.updateShapeList();
+		//console.log(this.currColour);
+		//console.log("width " + this.currLineWidth);
+	//	drawing.addShape(this.currentShape);
+//		drawing.updateShapeList();
 	}.bind(this);
 
 	Pencil.prototype.onInteractionUpdate = function (dnd) {
@@ -86,15 +86,17 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
-		//drawing.paint(ctx);
 	}.bind(this);
 
 	Pencil.prototype.onInteractionEnd = function (dnd) {
 		this.currentShape.finalX = dnd.finalX;
 		this.currentShape.finalY = dnd.finalY;
 		this.currentShape.paint(this.ctx);
-		drawing.addShape(this.currentShape);
+		let k = drawing.addShape(this.currentShape);
+		console.log(k);
 		drawing.paint(this.ctx);
+		drawing.updateShapeList();
+
 	}.bind(this);
 
 	this.drawRect = function() {
@@ -120,8 +122,8 @@ function Pencil(ctx, drawing, canvas) {
 	let color = document.getElementById("colour");
 	color.addEventListener('change', this.changeColor, false);
 
-	console.log(this.changeColor);
-	console.log(this.changeEpaisseur);
+	//console.log(this.changeColor);
+	//console.log(this.changeEpaisseur);
 };
 
 
