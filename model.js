@@ -1,18 +1,7 @@
 
 // Implémenter ici les 4 classes du modèle.
 // N'oubliez pas l'héritage !
-/*
-    function Drawing(){
-        this.shapes = new Array();
-        this.getShapes = function() {
-            return this.shapes;
-        }.bind(this) ;
 
-        this.addShape = function(form) {
-            this.shapes.push(form);
-        }.bind(this) ;
-    }
- */
 
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>

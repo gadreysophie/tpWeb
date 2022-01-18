@@ -28,24 +28,6 @@ function Pencil(ctx, drawing, canvas) {
 	//Couleur
 	document.getElementById("colour").onchange=(e) => this.currColour = e.target.value;
 
-/*
-	rectButton.addEventListener('click', function () {
-		this.currEditingMode = editingMode.rect
-	}.bind(this));
-
-	lineButton.addEventListener('click', function () {
-		this.currEditingMode = editingMode.line
-	}.bind(this));
-
-	widthSpinBox.addEventListener('input', function (evt) {
-		this.currLineWidth = evt.target.value
-	}.bind(this));
-
-	colorPicker.addEventListener('input', function (evt) {
-		this.currColour = evt.target.value
-	}).bind(this);
- */
-
 	new DnD(canvas, this);
 
 	// Implémentez ici les 3 fonctions onInteractionStart, onInteractionUpdate et onInteractionEnd
@@ -64,10 +46,6 @@ function Pencil(ctx, drawing, canvas) {
 			default:
 				break;
 		}
-		//console.log(this.currColour);
-		//console.log("width " + this.currLineWidth);
-	//	drawing.addShape(this.currentShape);
-//		drawing.updateShapeList();
 	}.bind(this);
 
 	Pencil.prototype.onInteractionUpdate = function (dnd) {
@@ -122,8 +100,6 @@ function Pencil(ctx, drawing, canvas) {
 	let color = document.getElementById("colour");
 	color.addEventListener('change', this.changeColor, false);
 
-	//console.log(this.changeColor);
-	//console.log(this.changeEpaisseur);
 };
 
 
